@@ -5,10 +5,7 @@ set(lib xqueue)
 file(GLOB SRCSC "./*.c")
 file(GLOB SRCSH "./*.h")
 add_library(${lib} ${SRCSH} ${SRCSC})
-set_target_properties(${lib} PROPERTIES LINKER_LANGUAGE C)
-
 target_link_libraries(${lib} PUBLIC zephyr_interface)
 target_link_libraries(${lib} PUBLIC xlog)
-
 target_include_directories(${lib} PUBLIC ./)
-
+target_link_libraries(${lib} PUBLIC kernel)
