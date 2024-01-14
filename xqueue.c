@@ -1,6 +1,6 @@
 #include "xqueue.h"
 #include <string.h>
-#include "xlog.h"
+#include <xlog.h>
 
 queue_msg_t *alloc_queue_msg(queue_data_spec_t *spec)
 {
