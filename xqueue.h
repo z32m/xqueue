@@ -5,7 +5,6 @@
 
 typedef struct
 {
-    void *kernels_data;
     size_t len;
     uint8_t *data;
 } queue_msg_t;
@@ -14,7 +13,7 @@ typedef struct
 {
     const struct k_mem_slab *msgs_slab;
     const struct k_mem_slab *data_slab;
-    const struct k_queue *queue;
+    struct k_queue *queue;
     const size_t msg_max_length;
 } queue_data_spec_t;
 
