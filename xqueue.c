@@ -6,8 +6,8 @@ queue_msg_t *alloc_queue_msg(queue_data_spec_t *spec)
 {
     queue_msg_t *msg;
 
-    SUCCESS(k_mem_slab_alloc, spec->msgs_slab, (void *)&msg, K_NO_WAIT);
-    SUCCESS(k_mem_slab_alloc, spec->data_slab, (void *)&(msg->data), K_NO_WAIT);
+    SURE(k_mem_slab_alloc, spec->msgs_slab, (void *)&msg, K_NO_WAIT);
+    SURE(k_mem_slab_alloc, spec->data_slab, (void *)&(msg->data), K_NO_WAIT);
 
     return msg;
 }

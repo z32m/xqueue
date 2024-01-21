@@ -11,8 +11,8 @@ typedef struct
 
 typedef struct
 {
-    const struct k_mem_slab *msgs_slab;
-    const struct k_mem_slab *data_slab;
+    struct k_mem_slab *msgs_slab;
+    struct k_mem_slab *data_slab;
     struct k_queue *queue;
     const size_t msg_max_length;
 } queue_data_spec_t;
