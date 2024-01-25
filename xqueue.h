@@ -5,6 +5,7 @@
 
 typedef struct
 {
+    uint32_t __reserved;
     size_t len;
     uint8_t *data;
 } queue_msg_t;
@@ -15,6 +16,7 @@ typedef struct
     struct k_mem_slab *data_slab;
     struct k_queue *queue;
     const size_t msg_max_length;
+    size_t len;
 } queue_data_spec_t;
 
 #define DEFINE_QUEUE_DATA(_queue, _p_msg_size, _p_msgs_limit)                     \
@@ -29,10 +31,13 @@ typedef struct
         .msg_max_length = _queue##_msgs_limit, \
         .msgs_slab = &_queue##_msgs_slab,      \
         .data_slab = &_queue##_msgs_data_slab, \
-        .queue = &_queue##_msgs                \
+        .queue = &_queue##_msgs,               \
+        .len = 0                               \
     }
 
 void free_queue_msg(queue_data_spec_t *spec, queue_msg_t *msg);
 queue_msg_t *alloc_queue_msg(queue_data_spec_t *spec);
+void xqueue_send_msg(queue_data_spec_t *spec, queue_msg_t *msg);
+queue_msg_t *xqueue_recv_msg(queue_data_spec_t *spec, k_timeout_t timeout);
 
 #endif
